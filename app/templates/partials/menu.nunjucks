@@ -1,0 +1,11 @@
+{% block menu %}
+    {% if menuListItems %}
+        <ul>
+            {% set idx = 0 %}
+            {% for item in menuListItems %}
+                {% set idx = idx + 1 %}
+                <li>{{item.label}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <title>{{ title }}</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+        <link rel="stylesheet" href="css/vendor.css"/>
+        <link rel="stylesheet" href="css/bundle.css"/>
+    </head>
+    <body class="no-js">
+        <main id="main">
+            <div class="container px-4">
+                <div class="row gx-10">
+                    <div class="col">
+                        <div class="p-3 border bg-light">
+                            {% include './partials/menu.nunjucks' %}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="p-3 border bg-light">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

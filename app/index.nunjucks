@@ -1,0 +1,6 @@
+{# variabes #}
+{% set title = 'Главная.' %}
+{% extends 'layout.nunjucks' %}
+{% block content %}
+INDEX
+{% endblock %}
