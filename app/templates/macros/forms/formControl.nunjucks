@@ -1,0 +1,10 @@
+{# INPUTS #}
+{# text #}
+{% macro hidden(name, value = '', attr = []) %}
+    <input type="text" name="{{ name }}" value="{{ value | escape }}" class="form-control"/>
+{% endmacro %}
+{# hidden #}
+
+{% macro text(name, value = '', attr = []) %}
+    <input type="text" name="{{ name }}" value="{{ value | escape }}" class="form-control"/>
+{% endmacro %}

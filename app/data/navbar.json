@@ -5,22 +5,19 @@
 			"href": "homepage.html"
 		},
 		{
-			"label": "Contact",
-			"href": "contact.html"
-		},
-		{
-			"label": "About",
-			"href": "about.html",
+			"label": "Forms",
+			"href": "templates/forms.html",
 			"dropdown":[
 				{
-					"label":"History",
-					"href":"about/history.html"
+					"label":"Form control",
+					"href":"templates/forms/form-control.html"
 				},
 				{
-					"label":"Projects",
-					"href":"about/projects.html"
+					"label":"Select",
+					"href":"templates/forms/select.html"
 				}
 			]
 		}
+	
 	]
 }

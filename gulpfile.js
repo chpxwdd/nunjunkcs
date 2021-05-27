@@ -17,26 +17,35 @@ var PATH = {
 	APP_JS: './app/js',
 	DATA: './app/data',
 	TEMPLATES: './app/templates',
+	APP_PAGES: './app/pages',
 	PARTIALS: './app/templates/partial',
 	MACROS: './app/templates/macros',
 	SRC: './src',
+	SRC_PAGES: './src/pages',
 	SRC_JS: './src/js',
 	SRC_CSS: './src/css'
 };
 
 
 gulp.task('nunjucks', function (done) {
-	gulp
-		.src([
-			'./app/**/**/**.+(html|nunjucks)',
-			'./app/**/**.+(html|nunjucks)',
-			'./app/**.+(html|nunjucks)'
-		])
-		.pipe(data(function () { return require(PATH.DATA.concat('/menu.json')) }))// menuItems
-		.pipe(data(function () { return require(PATH.DATA.concat('/navbar.json')) }))// navbarItems
+
+	// gulp
+	// 	.src([
+	// 		'./app/**/**/**.+(html|nunjucks)',
+	// 		'./app/**/**.+(html|nunjucks)',
+	// 		'./app/**.+(html|nunjucks)'
+	// 	])
+	// 	.pipe(data(function () { return require(PATH.DATA.concat('/navbar.json')) }))// navbarItems
+	// 	.pipe(nunjucksRender({ path: [PATH.TEMPLATES] }))
+	// 	.pipe(gulp.dest('src'));
+	// done();
+	gulp.src(['./pages/**.+(html|nunjucks)'])
 		.pipe(nunjucksRender({ path: [PATH.TEMPLATES] }))
-		.pipe(gulp.dest('src'));
+		.pipe(gulp.dest(PATH.SRC));
 	done();
+
+
+
 });
 
 gulp.task('sass-bootstrap', function (done) {

@@ -1,0 +1,6 @@
+{% set title = 'Forms' %}
+{% import "macros/forms/formControl.nunjucks" as formControls %}
+{% extends 'layout.nunjucks' %}
+{% block content %}
+    {{formControls.text('name', 'huy')}}
+{% endblock %}

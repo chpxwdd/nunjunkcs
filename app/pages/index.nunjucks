@@ -1,6 +1,6 @@
 {# variabes #}
 {% set title = 'Главная.' %}
-{% extends 'layout.nunjucks' %}
+{% extends 'templates/layout.nunjucks' %}
 {% block content %}
 INDEX
 {% endblock %}

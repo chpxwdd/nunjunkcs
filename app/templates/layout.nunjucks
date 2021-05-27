@@ -11,7 +11,7 @@
     <body class="no-js">
         <main id="main">
             <div class="container px-4">
-                {% include './partials/navbar.nunjucks' %}
+                {# {% include './partials/navbar.nunjucks' %} #}
                 <div class="row gx-10">
                     <div class="col">
                         <div class="p-3 border bg-light"></div>
