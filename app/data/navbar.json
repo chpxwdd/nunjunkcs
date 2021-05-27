@@ -1,0 +1,26 @@
+{
+	"navbarItems": [
+		{
+			"label": "Home",
+			"href": "homepage.html"
+		},
+		{
+			"label": "Contact",
+			"href": "contact.html"
+		},
+		{
+			"label": "About",
+			"href": "about.html",
+			"dropdown":[
+				{
+					"label":"History",
+					"href":"about/history.html"
+				},
+				{
+					"label":"Projects",
+					"href":"about/projects.html"
+				}
+			]
+		}
+	]
+}

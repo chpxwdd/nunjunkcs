@@ -11,11 +11,10 @@
     <body class="no-js">
         <main id="main">
             <div class="container px-4">
+                {% include './partials/navbar.nunjucks' %}
                 <div class="row gx-10">
                     <div class="col">
-                        <div class="p-3 border bg-light">
-                            {% include './partials/menu.nunjucks' %}
-                        </div>
+                        <div class="p-3 border bg-light"></div>
                     </div>
                     <div class="col">
                         <div class="p-3 border bg-light">

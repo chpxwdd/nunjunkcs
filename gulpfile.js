@@ -32,11 +32,8 @@ gulp.task('nunjucks', function (done) {
 			'./app/**/**.+(html|nunjucks)',
 			'./app/**.+(html|nunjucks)'
 		])
-		.pipe(
-			data(function () {
-				return require(PATH.DATA.concat('/menu.json'));
-			})
-		)
+		.pipe(data(function () { return require(PATH.DATA.concat('/menu.json')) }))// menuItems
+		.pipe(data(function () { return require(PATH.DATA.concat('/navbar.json')) }))// navbarItems
 		.pipe(nunjucksRender({ path: [PATH.TEMPLATES] }))
 		.pipe(gulp.dest('src'));
 	done();
@@ -83,37 +80,62 @@ gulp.task('sass-vendor', function (done) {
 	done();
 });
 
-
+gulp.task('js-vendor', function (done) {
+	gulp
+		.src([
+			'./node_modules/jquery/dist/jquery.js',
+			'./node_modules/popper.js/dist/umd/popper.js',
+			'./node_modules/bootstrap/dist/js/bootstrap.js',
+			'./node_modules/moment/moment.js',
+			'./node_modules/daterangepicker/daterangepicker.js'
+		])
+		.pipe(concatJS('vendor.js'))
+		.pipe(gulp.dest(PATH.SRC_JS))
+		.pipe(browserSync.stream());
+	done();
+});
+gulp.task('js-bundle', function (done) {
+	gulp
+		.src([
+			PATH.APP_JS.concat('/modules/**.js'),
+			PATH.APP_JS.concat('/ui/**.js'),
+			PATH.APP_JS.concat('/**.js')
+		])
+		.pipe(concatJS('bundle.js'))
+		.pipe(wrap('(function(){ %= body % })();'))
+		.pipe(uglify())
+		.pipe(gulp.dest(PATH.SRC_JS))
+		.pipe(browserSync.stream());
+	done();
+});
 // Static Server + watching scss/html files
 gulp.task('serve', function (done) {
 	// index.html
 	browserSync.init({ server: PATH.SRC });
-
-	// gulp.watch(
-	// 	'./node_modules/bootstrap/scss/bootstrap.scss',
-	// 	gulp.series('sass-vendor')
-	// );
 	gulp.watch(PATH.APP_SCSS.concat('/*.scss'), gulp.series('sass-bundle'));
-
 	gulp.watch(PATH.PARTIALS.concat('/*.(html|nunjucks)')).on('change', () => {
 		// browserSync.reload;
 		browserSync.resume;
 		done();
 	});
-
 	gulp.watch(PATH.APP.concat('/*.(html|nunjucks)')).on('change', () => {
 		browserSync.resume;
 		done();
 	});
-	// done();
 });
 
 gulp.task(
 	'default',
 	gulp.series(
+		// templates
 		'nunjucks',
+		// css
 		'sass-vendor',
 		'sass-bundle',
+		// js
+		'js-vendor',
+		'js-bundle',
+		// server
 		'serve'
 	)
 );
